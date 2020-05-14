@@ -1,6 +1,7 @@
 const express = require("express"); 
 const mongoose = require("mongoose"); 
 const logger = require("morgan"); 
+var db = mongoose.connection; 
 
 const PORT = process.env.PORT || 3000; 
 
@@ -16,7 +17,11 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
     useNewUrlParser: true, 
     useFindAndModify: false
     
-})
+}); 
+
+//provide error message if there is an error with the database
+
+db.on('error', console.error.bind(console, 'connection error:'));
 
 
 //require my api routes
