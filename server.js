@@ -15,7 +15,8 @@ app.use(express.static("public"));
 //useFindAndModify is automatically true, so set to false so I can use findOneAndUpdate and findOneAndRemove
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
     useNewUrlParser: true, 
-    useFindAndModify: false
+    useFindAndModify: false,
+    useUnifiedTopology: true
     
 }); 
 
