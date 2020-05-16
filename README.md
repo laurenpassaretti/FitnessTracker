@@ -19,4 +19,4 @@ https://github.com/laurendoss/FitnessTracker
 
 
 And finally, here is a screenshot of the deployed app: 
-![](./public/assets/img/screenshot.png)
+![](./public/assets/screenshot.png)
