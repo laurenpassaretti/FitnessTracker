@@ -16,7 +16,7 @@ router.post("/api/workouts", (req, res) => {
 router.put("/api/workouts/:id", (req,res) => {
     console.log("here")
     workout.findByIdAndUpdate(req.params.id,
-        { $push: { Exercises: req.body } },
+        { $push: { exercises: req.body } },
         // "runValidators" will ensure new exercises meet our schema requirements
         { new: true, runValidators: true })
     .then(dbWorkout => {
@@ -35,6 +35,16 @@ router.get("/exercise", (req,res) => {
     res.sendFile(path.join(__dirname, "../public/exercise.html")); 
 }); 
 
+router.get("/api/workouts/range", (req,res) => {
+    workout.find({})
+    
+    .then(dbWorkout => {
+        res.json(dbWorkout)
+    }).catch(err => {
+        res.status(400).json(err)
+    })
+})
+
 router.get("/api/workouts", (req,res) => {
     workout.find({})
     .then(dbWorkout => {
@@ -43,4 +53,8 @@ router.get("/api/workouts", (req,res) => {
         res.status(400).json(err)
     })
 })
+
+// WorkoutSchema.virtual('totalDuration').get(function () {
+
+
 module.exports = router; 
